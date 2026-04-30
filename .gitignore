@@ -5,4 +5,5 @@
 **/install/
 .cache
 # Local CycloneDDS workspace
-cyclonedds_ws/
+cyclonedds_ws/src/cyclonedds/
+cyclonedds_ws/src/rmw_cyclonedds/
