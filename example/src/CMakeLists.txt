@@ -77,10 +77,20 @@ target_compile_features(g1_dual_arm_example PRIVATE cxx_std_20)
 add_executable(g1_audio_client_example src/g1/audio_client/g1_audio_client_example.cpp)
 target_compile_features(g1_audio_client_example PRIVATE cxx_std_20)
 
-# added for custom node
+# added for custom nodes
 add_executable(my_mover_node src/go2/mover_node.cpp src/common/ros2_sport_client.cpp)
 target_compile_features(my_mover_node PRIVATE cxx_std_20)
+
+add_executable(path_runner_node src/go2/path_runner.cpp src/common/ros2_sport_client.cpp)
+target_compile_features(path_runner_node PRIVATE cxx_std_20)
+
+add_executable(path_runner2_node src/go2/path_runner2.cpp src/common/ros2_sport_client.cpp)
+target_compile_features(path_runner2_node PRIVATE cxx_std_20)
+
 ament_target_dependencies(my_mover_node ${DEPENDENCY_LIST})
+ament_target_dependencies(path_runner_node ${DEPENDENCY_LIST})
+ament_target_dependencies(path_runner2_node ${DEPENDENCY_LIST})
+# -------
 
 ament_target_dependencies(low_level_ctrl ${DEPENDENCY_LIST})
 ament_target_dependencies(low_level_ctrl_hg ${DEPENDENCY_LIST})
@@ -127,8 +137,24 @@ install(TARGETS g1_ankle_swing_example)
 install(TARGETS g1_dual_arm_example)
 install(TARGETS g1_audio_client_example)
 
-# added for custom node
+# added for custom nodes
 install(TARGETS my_mover_node)
+install(TARGETS path_runner_node)
+install(TARGETS path_runner2_node)
+
+# added for python node
+install(PROGRAMS
+  scripts/gas_classifier_node.py
+  DESTINATION bin
+  RENAME gas_classifier_node
+)
+
+install(PROGRAMS
+  scripts/classification_map_node.py
+  DESTINATION bin
+  RENAME classification_map_node
+)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -4,3 +4,5 @@
 **/log/
 **/install/
 .cache
+# Local CycloneDDS workspace
+cyclonedds_ws/
